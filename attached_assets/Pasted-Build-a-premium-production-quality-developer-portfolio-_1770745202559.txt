@@ -1,0 +1,165 @@
+Build a premium, production-quality developer portfolio website using React + Tailwind CSS.
+
+This portfolio should target product companies and AI-focused engineering roles. It must look modern, clean, and technically impressive — not a basic template.
+
+Use a dark + glassmorphism theme with smooth animations.
+
+Use this real developer profile:
+
+NAME:
+Shrish Vinayak Hegde
+
+TITLE:
+Full Stack Developer | AI Systems & Cloud Engineer
+
+TAGLINE:
+Building scalable full-stack platforms, AI systems, and cloud-native applications.
+
+PROFILE IMAGE:
+Use local file shrish.jpeg as hero profile photo.
+
+CONTACT:
+Phone: +91 7483364075
+Email: shreeshhegde47@gmail.com
+LinkedIn: https://linkedin.com/in/shrishhegde4
+GitHub: https://github.com/Shreesh126
+
+-----------------------
+SITE STRUCTURE
+-----------------------
+
+Create a single-page portfolio with smooth scroll and section navigation.
+
+Sections required:
+
+1️⃣ Hero Section
+- Large hero layout
+- Profile image
+- Name + animated typing title
+- Tagline
+- Buttons:
+  - View Projects
+  - Download Resume
+  - Contact
+- Animated gradient background
+- Tech stack ticker animation
+
+2️⃣ About Section
+Write a strong professional summary emphasizing:
+- Full stack engineering
+- AI systems
+- Cloud architecture
+- Microservices
+- Production deployments
+- Performance optimization
+
+3️⃣ Skills Matrix Section
+Display skills in categorized interactive cards:
+
+Languages:
+Java, Python, JavaScript, SQL
+
+Frontend:
+React, Next.js, Angular, Tailwind
+
+Backend:
+Node.js, Express, FastAPI, Flask, GraphQL, REST
+
+AI/ML:
+NLP, Machine Learning, Deep Learning, LangChain, RAG
+
+Cloud & DevOps:
+AWS (S3, Lambda, DynamoDB, EC2, RDS, AppSync)
+Cloudflare, Docker, Kubernetes, Kafka, Microservices
+
+Add skill level bars and icons.
+
+4️⃣ Experience Section (Timeline Style)
+
+Junior Web Developer — Wow Skin Science — Jul 2025–Present
+Show impact-based bullets:
+- Built Strapi CMS with React + Next.js
+- AWS deployments
+- CDN + caching optimization
+- AI chatbot integration
+- CI/CD pipelines
+- Microservice performance tuning
+
+5️⃣ Projects Section (Product-Level Cards)
+
+Create premium project cards with:
+- Architecture tags
+- Tech badges
+- GitHub buttons
+- “System Design Highlights” expandable panel
+
+Projects:
+
+Device Tracking Platform
+- Real-time tracking
+- WebSockets
+- Node + MongoDB + React
+
+AI Resume Screening System
+- NLP + semantic matching
+- AI ranking engine
+
+Blockchain Land Registry
+- Flask + Ethereum
+- QR-based verification
+
+6️⃣ Architecture & Systems Section (Unique)
+Add a special section showing:
+- Microservices
+- AI pipelines
+- Cloud deployments
+Use simple diagrams or visual blocks.
+
+7️⃣ Certifications Section
+
+NPTEL Privacy & Security — Silver
+NPTEL Human Computer Interfaces
+
+8️⃣ Education Section
+
+BE Information Science — CGPA 7.48
+PUC — 90.6%
+
+9️⃣ Contact Section
+- Contact form UI
+- Social icons
+- Copy email button
+
+-----------------------
+FEATURE REQUIREMENTS
+-----------------------
+
+Include:
+
+- Dark/light mode toggle
+- Smooth scroll navigation
+- Sticky navbar
+- Scroll reveal animations
+- Hover effects
+- Project filtering by tech
+- Resume download button
+- SEO meta tags
+- Fast loading
+- Mobile responsive
+- Reusable components
+- Data stored in JSON file
+- Clean folder structure
+- Production-ready code
+
+-----------------------
+TECH REQUIREMENTS
+-----------------------
+
+- React functional components
+- Tailwind CSS
+- Framer Motion animations
+- lucide-react icons
+- No backend needed
+- Ready to deploy
+
+Generate full working code with components separated properly.
