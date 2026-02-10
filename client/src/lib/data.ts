@@ -55,6 +55,7 @@ export const PORTFOLIO_DATA = {
   projects: [
     {
       title: "Device Tracking Platform",
+      category: "Full Stack",
       description: "Real-time full-stack web application for monitoring live locations and device status.",
       tech: ["Node.js", "MongoDB", "React", "WebSockets", "Google Maps API"],
       link: "https://github.com/Shreesh126",
@@ -67,6 +68,7 @@ export const PORTFOLIO_DATA = {
     },
     {
       title: "AI Resume Screening System",
+      category: "AI/ML",
       description: "AI-powered candidate evaluation platform using NLP to extract skills and rank profiles.",
       tech: ["Python", "MongoDB", "NLP", "AI", "FastAPI"],
       link: "https://github.com/Shreesh126",
@@ -79,6 +81,7 @@ export const PORTFOLIO_DATA = {
     },
     {
       title: "Blockchain Land Registry",
+      category: "Blockchain",
       description: "Secure land registration system using Flask and Ethereum blockchain for tamper-proof records.",
       tech: ["Flask", "Python", "Ethereum", "Smart Contracts", "QR Codes"],
       link: "https://github.com/Shreesh126",

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ContactForm } from "@/components/ContactForm";
@@ -7,9 +8,16 @@ import {
   Github, Linkedin, Twitter, Mail, Download, 
   ExternalLink, ChevronRight, GraduationCap, Award
 } from "lucide-react";
-import heroImg from "@assets/shrish_1770745230928.jpeg";
+import heroImg from "../assets/shrish_1770745230928.jpeg";
 
 export default function Home() {
+  const [filter, setFilter] = useState("All");
+
+  const categories = ["All", "Full Stack", "AI/ML", "Blockchain"];
+  const filteredProjects = filter === "All" 
+    ? PORTFOLIO_DATA.projects 
+    : PORTFOLIO_DATA.projects.filter(p => p.category === filter);
+
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       <Navbar />
@@ -48,7 +56,7 @@ export default function Home() {
               <a href="#contact" className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2">
                 Let's Talk <ChevronRight className="w-4 h-4" />
               </a>
-              <a href="#" className="px-8 py-4 bg-white/5 text-white font-bold rounded-full border border-white/10 hover:bg-white/10 transition-colors flex items-center gap-2">
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-8 py-4 bg-white/5 text-white font-bold rounded-full border border-white/10 hover:bg-white/10 transition-colors flex items-center gap-2">
                 Download CV <Download className="w-4 h-4" />
               </a>
             </div>
@@ -166,9 +174,16 @@ export default function Home() {
                     </span>
                   </div>
                   <h4 className="text-lg font-medium mb-3">{exp.company}</h4>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground leading-relaxed mb-4">
                     {exp.description}
                   </p>
+                  {exp.highlights && (
+                    <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground/80">
+                      {exp.highlights.map((highlight, i) => (
+                        <li key={i}>{highlight}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               </motion.div>
             ))}
@@ -181,46 +196,69 @@ export default function Home() {
         <div className="container max-w-7xl mx-auto px-4">
           <SectionHeading title="Featured Work" subtitle="Portfolio" />
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PORTFOLIO_DATA.projects.map((project, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-                className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full"
+          {/* Project Filter */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setFilter(category)}
+                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  filter === category 
+                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
+                    : "bg-white/5 hover:bg-white/10 text-muted-foreground"
+                }`}
               >
-                <div className="h-48 bg-gradient-to-br from-gray-800 to-black relative flex items-center justify-center overflow-hidden">
-                  <project.icon className="w-16 h-16 text-white/10 group-hover:scale-125 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-                
-                <div className="p-8 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-6 flex-1">
-                    {project.description}
-                  </p>
-                  
-                  <div className="space-y-6">
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map(t => (
-                        <span key={t} className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                    
-                    <a href={project.link} className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors">
-                      View Project <ExternalLink className="w-4 h-4" />
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
+                {category}
+              </button>
             ))}
           </div>
+          
+          <motion.div 
+            layout
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            <AnimatePresence>
+              {filteredProjects.map((project, index) => (
+                <motion.div
+                  layout
+                  key={project.title}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  whileHover={{ y: -10 }}
+                  className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full"
+                >
+                  <div className="h-48 bg-gradient-to-br from-gray-800 to-black relative flex items-center justify-center overflow-hidden">
+                    <project.icon className="w-16 h-16 text-white/10 group-hover:scale-125 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                  
+                  <div className="p-8 flex-1 flex flex-col">
+                    <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-6 flex-1">
+                      {project.description}
+                    </p>
+                    
+                    <div className="space-y-6">
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map(t => (
+                          <span key={t} className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                      
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors">
+                        View Project <ExternalLink className="w-4 h-4" />
+                      </a>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         </div>
       </section>
 
@@ -238,7 +276,10 @@ export default function Home() {
                   <div key={i} className="glass-card p-6 rounded-xl border-l-4 border-l-primary">
                     <h4 className="text-lg font-bold">{edu.degree}</h4>
                     <p className="text-muted-foreground">{edu.school}</p>
-                    <span className="text-sm opacity-60 mt-2 block">{edu.year}</span>
+                    <div className="flex justify-between mt-2">
+                      <span className="text-sm opacity-60">{edu.year}</span>
+                      <span className="text-sm font-bold text-primary">{edu.details}</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -253,7 +294,10 @@ export default function Home() {
                 {PORTFOLIO_DATA.certifications.map((cert, i) => (
                   <div key={i} className="glass-card p-4 rounded-xl flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-accent" />
-                    <span className="font-medium text-foreground/90">{cert}</span>
+                    <div className="flex-1">
+                      <h4 className="font-medium text-foreground/90">{cert.name}</h4>
+                      <p className="text-sm text-muted-foreground">{cert.issuer}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -282,7 +326,7 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold">Email</h4>
-                    <p className="text-muted-foreground">shrish@example.com</p>
+                    <p className="text-muted-foreground">shreeshhegde47@gmail.com</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -291,7 +335,9 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-bold">LinkedIn</h4>
-                    <p className="text-muted-foreground">/in/shrish-vinayak</p>
+                    <a href="https://linkedin.com/in/shrishhegde4" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      in/shrishhegde4
+                    </a>
                   </div>
                 </div>
               </div>
