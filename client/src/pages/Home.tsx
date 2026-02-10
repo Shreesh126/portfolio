@@ -228,16 +228,22 @@ export default function Home() {
                   whileHover={{ y: -10 }}
                   className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full"
                 >
-                  <div className="h-48 bg-gradient-to-br from-gray-800 to-black relative flex items-center justify-center overflow-hidden">
-                    <project.icon className="w-16 h-16 text-white/10 group-hover:scale-125 transition-transform duration-500" />
-                    <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="h-48 relative flex items-center justify-center overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <project.icon className="w-12 h-12 text-white" />
+                    </div>
                   </div>
                   
                   <div className="p-8 flex-1 flex flex-col">
                     <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground mb-6 flex-1">
+                    <p className="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed">
                       {project.description}
                     </p>
                     
@@ -249,10 +255,6 @@ export default function Home() {
                           </span>
                         ))}
                       </div>
-                      
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors">
-                        View Project <ExternalLink className="w-4 h-4" />
-                      </a>
                     </div>
                   </div>
                 </motion.div>

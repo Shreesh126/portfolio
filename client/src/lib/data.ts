@@ -1,5 +1,9 @@
 import { Code2, Globe, Database, Cpu, Cloud, Terminal, Layers, ShieldCheck, Box, GraduationCap, Award, Server } from "lucide-react";
 
+import projectTrackingImg from "../assets/project-tracking.png";
+import projectResumeImg from "../assets/project-resume.png";
+import projectRegistryImg from "../assets/project-registry.png";
+
 export const PORTFOLIO_DATA = {
   hero: {
     name: "Shrish Vinayak Hegde",
@@ -56,10 +60,11 @@ export const PORTFOLIO_DATA = {
     {
       title: "Device Tracking Platform",
       category: "Full Stack",
-      description: "Real-time full-stack web application for monitoring live locations and device status.",
+      description: "A comprehensive real-time tracking solution designed for IoT devices. This platform enables users to monitor live locations with high precision using Google Maps API. It features a robust backend architecture capable of handling high-frequency data streams via WebSockets, ensuring minimal latency. The system also includes geofencing capabilities, automated alerts, and historical data visualization.",
       tech: ["Node.js", "MongoDB", "React", "WebSockets", "Google Maps API"],
       link: "https://github.com/Shreesh126",
       icon: Globe,
+      image: projectTrackingImg,
       features: [
         "Real-time tracking with WebSockets",
         "Secure backend with Node.js & MongoDB",
@@ -69,10 +74,11 @@ export const PORTFOLIO_DATA = {
     {
       title: "AI Resume Screening System",
       category: "AI/ML",
-      description: "AI-powered candidate evaluation platform using NLP to extract skills and rank profiles.",
+      description: "An intelligent recruitment tool that streamlines the hiring process by automatically analyzing and ranking candidate resumes. Leveraging Natural Language Processing (NLP) techniques, the system extracts key skills, qualifications, and experience from resumes in various formats. It then performs a semantic match against job descriptions to provide a relevance score, helping recruiters identify top talent faster.",
       tech: ["Python", "MongoDB", "NLP", "AI", "FastAPI"],
       link: "https://github.com/Shreesh126",
       icon: ShieldCheck,
+      image: projectResumeImg,
       features: [
         "Semantic matching engine",
         "Automated qualification extraction",
@@ -82,10 +88,11 @@ export const PORTFOLIO_DATA = {
     {
       title: "Blockchain Land Registry",
       category: "Blockchain",
-      description: "Secure land registration system using Flask and Ethereum blockchain for tamper-proof records.",
+      description: "A decentralized application (DApp) built to ensure transparency and security in land property transactions. By utilizing Ethereum smart contracts, this system creates tamper-proof records of land ownership. Each registered property is assigned a unique digital deed and a QR code, allowing for instant and verifiable ownership checks, significantly reducing fraud and administrative overhead.",
       tech: ["Flask", "Python", "Ethereum", "Smart Contracts", "QR Codes"],
       link: "https://github.com/Shreesh126",
       icon: Box,
+      image: projectRegistryImg,
       features: [
         "Tamper-proof property records",
         "QR code generation for ownership verification",
