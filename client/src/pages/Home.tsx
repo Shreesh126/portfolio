@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { PORTFOLIO_DATA } from "@/lib/data";
 import { 
   Github, Linkedin, Twitter, Mail, Download, 
-  ExternalLink, ChevronRight, GraduationCap, Award
+  ExternalLink, ChevronRight, GraduationCap, Award, Send
 } from "lucide-react";
 import heroImg from "../assets/shrish_1770745230928.jpeg";
 
@@ -324,11 +324,13 @@ export default function Home() {
               <div className="space-y-6 mb-12">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary" />
+                    <Send className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="font-bold">Email</h4>
-                    <p className="text-muted-foreground">shreeshhegde47@gmail.com</p>
+                    <h4 className="font-bold">WhatsApp</h4>
+                    <a href="https://wa.me/917483364040" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
+                      +91 74833 64040
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
