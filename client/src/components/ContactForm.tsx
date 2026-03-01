@@ -18,7 +18,13 @@ export function ContactForm() {
     const body = encodeURIComponent(
       `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
     );
-    window.location.href = `mailto:shreeshhegde47@gmail.com?subject=${subject}&body=${body}`;
+
+    const link = document.createElement("a");
+    link.href = `mailto:mymail@gmail.com?subject=${subject}&body=${body}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
     form.reset();
   };
 
@@ -30,20 +36,20 @@ export function ContactForm() {
           <input
             {...form.register("name")}
             className="w-full px-4 py-3 rounded-xl bg-background/50 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-            placeholder="John Doe"
+            placeholder="Your name"
           />
           {form.formState.errors.name && (
             <p className="text-destructive text-sm">{form.formState.errors.name.message}</p>
           )}
         </div>
-        
+
         <div className="space-y-2">
           <label className="text-sm font-medium text-muted-foreground">Email</label>
           <input
             {...form.register("email")}
             type="email"
             className="w-full px-4 py-3 rounded-xl bg-background/50 border border-white/10 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-            placeholder="john@example.com"
+            placeholder="name@example.com"
           />
           {form.formState.errors.email && (
             <p className="text-destructive text-sm">{form.formState.errors.email.message}</p>
