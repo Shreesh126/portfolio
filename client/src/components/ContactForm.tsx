@@ -1,12 +1,9 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertMessageSchema, type InsertMessage } from "@shared/schema";
-import { useSubmitContact } from "@/hooks/use-contact";
-import { Loader2, Send } from "lucide-react";
+import { Send } from "lucide-react";
 
 export function ContactForm() {
-  const { mutate, isPending } = useSubmitContact();
-  
   const form = useForm<InsertMessage>({
     resolver: zodResolver(insertMessageSchema),
     defaultValues: {
@@ -17,9 +14,12 @@ export function ContactForm() {
   });
 
   const onSubmit = (data: InsertMessage) => {
-    mutate(data, {
-      onSuccess: () => form.reset(),
-    });
+    const subject = encodeURIComponent(`New Portfolio Contact from ${data.name}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+    );
+    window.location.href = `mailto:shreeshhegde47@gmail.com?subject=${subject}&body=${body}`;
+    form.reset();
   };
 
   return (
@@ -66,18 +66,9 @@ export function ContactForm() {
 
       <button
         type="submit"
-        disabled={isPending}
-        className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-white font-bold text-lg shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 disabled:pointer-events-none flex items-center justify-center gap-2"
+        className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-primary/80 text-white font-bold text-lg shadow-lg shadow-primary/20 hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
       >
-        {isPending ? (
-          <>
-            <Loader2 className="animate-spin" /> Sending...
-          </>
-        ) : (
-          <>
-            Send Message <Send className="w-5 h-5" />
-          </>
-        )}
+        Send Message <Send className="w-5 h-5" />
       </button>
     </form>
   );
