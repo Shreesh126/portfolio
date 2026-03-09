@@ -14,12 +14,17 @@ export function ContactForm() {
   });
 
   const onSubmit = (data: InsertMessage) => {
-    const phoneNumber = "917483364040";
-    const text = encodeURIComponent(
-      `*New Portfolio Inquiry*\n\n*Name:* ${data.name}\n*Email:* ${data.email}\n\n*Message:*\n${data.message}`
+    const subject = encodeURIComponent(`New Portfolio Contact from ${data.name}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
     );
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${text}`;
-    window.open(whatsappUrl, "_blank");
+
+    const link = document.createElement("a");
+    link.href = `mailto:mymail@gmail.com?subject=${subject}&body=${body}`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
     form.reset();
   };
 
