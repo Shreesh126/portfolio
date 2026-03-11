@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "public": "dist/public",
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "functions": {
+    "dist/index.cjs": {
+      "runtime": "nodejs20.x",
+      "memory": 1024,
+      "maxDuration": 60
+    }
+  }
+}
