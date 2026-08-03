@@ -46,9 +46,9 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/20 border border-muted/30 mb-8">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <span className="text-sm font-medium text-white/80">
+              <span className="text-sm font-medium text-muted-foreground">
                 Available for work
               </span>
             </div>
@@ -69,7 +69,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="#contact"
-                className="px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors flex items-center gap-2"
+                className="px-8 py-4 bg-white text-primary font-bold rounded-full border border-primary/20 hover:bg-primary/10 transition-colors flex items-center gap-2"
               >
                 Let's Talk <ChevronRight className="w-4 h-4" />
               </a>
@@ -77,7 +77,7 @@ export default function Home() {
                 href="/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 bg-white/5 text-white font-bold rounded-full border border-white/10 hover:bg-white/10 transition-colors flex items-center gap-2"
+                className="px-8 py-4 bg-white text-primary font-bold rounded-full border border-primary/20 hover:bg-primary/10 transition-colors flex items-center gap-2"
               >
                 Download CV <Download className="w-4 h-4" />
               </a>
@@ -114,7 +114,7 @@ export default function Home() {
         </div>
 
         {/* Tech Ticker */}
-        <div className="absolute bottom-0 w-full bg-white/5 border-t border-white/5 backdrop-blur-sm py-4 overflow-hidden">
+        <div className="absolute bottom-0 w-full bg-muted/20 border-t border-muted/30 backdrop-blur-sm py-4 overflow-hidden">
           <div className="flex animate-scroll whitespace-nowrap">
             {[
               ...PORTFOLIO_DATA.hero.techTicker,
@@ -122,7 +122,7 @@ export default function Home() {
             ].map((tech, i) => (
               <span
                 key={i}
-                className="mx-8 text-white/40 font-display font-bold text-xl uppercase tracking-wider"
+                className="mx-8 text-muted-foreground/60 font-display font-bold text-xl uppercase tracking-wider"
               >
                 {tech}
               </span>
@@ -136,93 +136,106 @@ export default function Home() {
         <div className="container max-w-4xl mx-auto px-4">
           <SectionHeading title="About Me" subtitle="Who I Am" />
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="glass-card p-8 md:p-12 rounded-3xl text-center"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <p className="text-xl md:text-2xl leading-relaxed text-muted-foreground font-light">
-              {PORTFOLIO_DATA.about.summary}
-            </p>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-2xl font-display font-bold mb-4">
+                  About Me
+                </h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  {PORTFOLIO_DATA.about.paragraph}
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  {(PORTFOLIO_DATA.about?.techStack || []).map((tech, i) => (
+                    <span
+                      key={i}
+                      className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-6">
+                {(PORTFOLIO_DATA.about?.highlights || []).map((highlight, i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <div>
+                      <h4 className="font-medium">{highlight.title}</h4>
+                      <p className="text-muted-foreground">{highlight.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* SKILLS SECTION */}
-      <section id="skills" className="section-padding relative">
-        <div className="container max-w-7xl mx-auto px-4">
-          <SectionHeading title="Technical Expertise" subtitle="My Arsenal" />
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PORTFOLIO_DATA.skills.map((skill, index) => (
-              <motion.div
-                key={skill.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="glass-card p-8 rounded-2xl group hover:-translate-y-2 transition-all duration-300"
-              >
-                <div className="bg-primary/10 w-14 h-14 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                  <skill.icon className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="text-xl font-bold mb-4">{skill.category}</h3>
-                <div className="flex flex-wrap gap-2">
-                  {skill.items.map((item) => (
-                    <span
-                      key={item}
-                      className="px-3 py-1 bg-white/5 rounded-full text-sm text-muted-foreground border border-white/5"
+      <section id="skills" className="section-padding">
+        <div className="container max-w-4xl mx-auto px-4">
+          <SectionHeading title="Skills" subtitle="What I Do" />
+          <div className="grid md:grid-cols-3 gap-8">
+            {PORTFOLIO_DATA.skills.map((category, i) => (
+              <div key={i} className="space-y-6">
+                <h3 className="text-2xl font-display font-bold">{category.category}</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  {category.items.map((skill, j) => (
+                    <div
+                      key={`${i}-${j}`}
+                      className="glass-card p-4 rounded-xl flex items-center gap-3"
                     >
-                      {item}
-                    </span>
+                      <div className="w-2 h-2 rounded-full bg-primary" />
+                      <div>
+                        <h4 className="font-medium">{skill}</h4>
+                        <p className="text-sm text-muted-foreground">
+                          Proficient
+                        </p>
+                      </div>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* EXPERIENCE SECTION */}
-      <section id="experience" className="section-padding bg-secondary/20">
+      <section id="experience" className="section-padding bg-black/20">
         <div className="container max-w-4xl mx-auto px-4">
-          <SectionHeading title="Professional Journey" subtitle="Experience" />
-
-          <div className="space-y-12 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
-            {PORTFOLIO_DATA.experience.map((exp, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
-              >
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background bg-primary shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                  <div className="w-2.5 h-2.5 bg-white rounded-full" />
-                </div>
-
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass-card p-6 rounded-2xl">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                    <h3 className="font-bold text-xl text-primary">
-                      {exp.role}
-                    </h3>
-                    <span className="text-sm font-mono text-muted-foreground bg-white/5 px-2 py-1 rounded">
-                      {exp.period}
-                    </span>
+          <SectionHeading title="Experience" subtitle="Where I've Worked" />
+          <div className="space-y-8">
+            {PORTFOLIO_DATA.experience.map((exp, i) => (
+              <div key={i} className="glass-card p-6 rounded-xl border-l-4 border-l-primary">
+                <div className="mb-4">
+                  <h3 className="text-xl font-display font-bold">{exp.role}</h3>
+                  <p className="text-muted-foreground">{exp.company}</p>
+                  <div className="flex mt-1">
+                    <span className="mr-2 text-sm opacity-60">{exp.duration}</span>
+                    <span className="text-sm font-medium text-primary">{exp.location}</span>
                   </div>
-                  <h4 className="text-lg font-medium mb-3">{exp.company}</h4>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                    {exp.description}
-                  </p>
-                  {exp.highlights && (
-                    <ul className="list-disc pl-5 space-y-2 text-sm text-muted-foreground/80">
-                      {exp.highlights.map((highlight, i) => (
-                        <li key={i}>{highlight}</li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
-              </motion.div>
+                <p className="text-muted-foreground leading-relaxed mb-4">
+                  {exp.description}
+                </p>
+                {exp.techStack && (
+                  <div className="flex flex-wrap gap-2">
+                    {exp.techStack.map((tech, j) => (
+                      <span
+                        key={j}
+                        className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -230,77 +243,70 @@ export default function Home() {
 
       {/* PROJECTS SECTION */}
       <section id="projects" className="section-padding">
-        <div className="container max-w-7xl mx-auto px-4">
-          <SectionHeading title="Featured Work" subtitle="Portfolio" />
-
-          {/* Project Filter */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setFilter(category)}
-                className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  filter === category
-                    ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25"
-                    : "bg-white/5 hover:bg-white/10 text-muted-foreground"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-
-          <motion.div
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence>
-              {filteredProjects.map((project, index) => (
-                <motion.div
-                  layout
-                  key={project.title}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  whileHover={{ y: -10 }}
-                  className="glass-card rounded-3xl overflow-hidden group flex flex-col h-full"
+        <div className="container max-w-4xl mx-auto px-4">
+          <SectionHeading title="Projects" subtitle="What I've Built" />
+          <div className="space-y-6">
+            <div className="flex flex-wrap gap-4 mb-6">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setFilter(category)}
+                  className={`px-4 py-2 rounded-full font-medium transition-all ${
+                    filter === category
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted/20 text-muted-foreground hover:bg-muted/30"
+                  }`}
                 >
-                  <div className="h-48 relative flex items-center justify-center overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <project.icon className="w-12 h-12 text-white" />
-                    </div>
-                  </div>
-
-                  <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-6 flex-1 text-sm leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="space-y-6">
-                      <div className="flex flex-wrap gap-2">
-                        {project.tech.map((t) => (
-                          <span
-                            key={t}
-                            className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+                  {category}
+                </button>
               ))}
-            </AnimatePresence>
-          </motion.div>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project) => (
+                <div key={project.id} className="glass-card p-6 rounded-xl hover:shadow-xl transition-shadow">
+                  <div className="mb-4">
+                    <h3 className="text-xl font-display font-bold">{project.title}</h3>
+                    <p className="text-muted-foreground">{project.category}</p>
+                  </div>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
+                    {project.description}
+                  </p>
+                  {project.tech && (
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs font-mono px-2 py-1 rounded bg-secondary text-secondary-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex justify-end">
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-primary/80 transition-colors"
+                    >
+                      Live Demo <ExternalLink className="ml-2" />
+                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-4 text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        Source Code <ExternalLink className="ml-2" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -386,7 +392,7 @@ export default function Home() {
 
               <div className="space-y-6 mb-12">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-muted/20 flex items-center justify-center">
                     <Send className="w-5 h-5 text-primary" />
                   </div>
                   <div>
@@ -402,7 +408,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-muted/20 flex items-center justify-center">
                     <Linkedin className="w-5 h-5 text-primary" />
                   </div>
                   <div>

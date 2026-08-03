@@ -12,32 +12,59 @@ export const PORTFOLIO_DATA = {
     techTicker: ["React", "Node.js", "Python", "AWS", "Docker", "PostgreSQL", "Next.js", "TypeScript", "TensorFlow", "Kubernetes"]
   },
   about: {
-    summary: "I am a passionate Full Stack Developer with a deep specialization in AI and Cloud Architecture. My expertise lies in building robust microservices, deploying scalable cloud solutions, and integrating cutting-edge AI models into practical applications. I bridge the gap between complex backend logic and intuitive frontend experiences."
+    paragraph: "I am a passionate Full Stack Developer with a deep specialization in AI and Cloud Architecture. My expertise lies in building robust microservices, deploying scalable cloud solutions, and integrating cutting-edge AI models into practical applications. I bridge the gap between complex backend logic and intuitive frontend experiences.",
+    techStack: [
+      "JavaScript/TypeScript",
+      "Python",
+      "React",
+      "Node.js",
+      "AWS",
+      "Docker",
+      "Kubernetes",
+      "PostgreSQL",
+      "MongoDB",
+      "TensorFlow/PyTorch",
+      "RESTful APIs",
+      "GraphQL"
+    ],
+    highlights: [
+      {
+        title: "Full-Stack Expertise",
+        description: "Expertise in building end-to-end applications with modern technologies"
+      },
+      {
+        title: "AI & Cloud Specialist",
+        description: "Specialized in AI integration and cloud-native application development"
+      },
+      {
+        title: "Problem Solver",
+        description: "Strong analytical skills with a focus on innovative solutions"
+      },
+      {
+        title: "Team Collaborator",
+        description: "Experienced in working in collaborative, agile environments"
+      }
+    ]
   },
   skills: [
     {
       category: "Languages",
-      icon: Terminal,
       items: ["Java", "Python", "JavaScript", "SQL", "HTML", "CSS"]
     },
     {
       category: "Frontend",
-      icon: Globe,
       items: ["React.js", "Next.js", "Angular", "Tailwind CSS", "Framer Motion"]
     },
     {
       category: "Backend",
-      icon: Database,
       items: ["Node.js", "Express", "FastAPI", "Flask", "GraphQL", "REST API", "WebSockets"]
     },
     {
       category: "AI & ML",
-      icon: Cpu,
       items: ["NLP", "Machine Learning", "Deep Learning", "LangChain", "RAG", "Pandas", "NumPy"]
     },
     {
       category: "Cloud & DevOps",
-      icon: Cloud,
       items: ["AWS (S3, Lambda, DynamoDB, EC2, RDS)", "Cloudflare", "Docker", "Kubernetes", "Kafka", "Microservices"]
     }
   ],
