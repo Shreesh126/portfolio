@@ -1,24 +1,8 @@
 {
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "server/public" }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.+\\.(js|css|png|jpg|jpeg|ico|svg|webp|json|txt|map))$",
-      "dest": "/server/public/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/server/public/index.html"
-    }
-  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "server/public",
+  "installCommand": "npm install",
   "env": {
     "NODE_ENV": "production"
-  },
-  "cleanUrls": true,
-  "trailingSlash": false
+  }
 }
