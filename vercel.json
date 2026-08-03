@@ -1,15 +1,13 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "public": "true",
+  "builds": [
+    { "src": "client/package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } },
+    { "src": "server/**/*.ts", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/server/api/$1" },
+    { "src": "/(.*)", "dest": "/client/dist/$1" }
+  ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "dist/index.cjs": {
-      "runtime": "nodejs20.x",
-      "memory": 1024,
-      "maxDuration": 60
-    }
   }
 }
