@@ -83,16 +83,20 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="mt-12 flex gap-6">
-              {[Github, Linkedin, Twitter, Mail].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Icon className="w-6 h-6" />
-                </a>
-              ))}
+            <div className="mt-12 flex gap-8">
+              {[Github, Linkedin, Twitter, Mail].map((Icon, i) => {
+                const labels = ['Github', 'Linkedin', 'Twitter', 'Mail'];
+                return (
+                  <a
+                    key={i}
+                    href="#"
+                    className="flex items-center gap-3 text-muted-foreground hover:text-primary transition-colors px-4 py-2 rounded hover:bg-muted/20"
+                  >
+                    <Icon className="w-6 h-6" />
+                    <span className="text-sm">{labels[i]}</span>
+                  </a>
+                );
+              })}
             </div>
           </motion.div>
 
@@ -111,23 +115,6 @@ export default function Home() {
               />
             </div>
           </motion.div>
-        </div>
-
-        {/* Tech Ticker */}
-        <div className="absolute bottom-0 w-full bg-muted/20 border-t border-muted/30 backdrop-blur-sm py-4 overflow-hidden">
-          <div className="flex animate-scroll whitespace-nowrap">
-            {[
-              ...PORTFOLIO_DATA.hero.techTicker,
-              ...PORTFOLIO_DATA.hero.techTicker,
-            ].map((tech, i) => (
-              <span
-                key={i}
-                className="mx-8 text-muted-foreground/60 font-display font-bold text-xl uppercase tracking-wider"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -181,17 +168,17 @@ export default function Home() {
           <SectionHeading title="Skills" subtitle="What I Do" />
           <div className="grid md:grid-cols-3 gap-8">
             {PORTFOLIO_DATA.skills.map((category, i) => (
-              <div key={i} className="space-y-6">
+              <div key={i} className="space-y-10">
                 <h3 className="text-2xl font-display font-bold">{category.category}</h3>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-6">
                   {category.items.map((skill, j) => (
                     <div
                       key={`${i}-${j}`}
-                      className="glass-card p-4 rounded-xl flex items-center gap-3"
+                      className="glass-card p-8 rounded-xl flex items-center gap-6"
                     >
                       <div className="w-2 h-2 rounded-full bg-primary" />
                       <div>
-                        <h4 className="font-medium">{skill}</h4>
+                        <h4 className="font-medium text-lg">{skill}</h4>
                         <p className="text-sm text-muted-foreground">
                           Proficient
                         </p>
