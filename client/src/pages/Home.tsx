@@ -36,6 +36,7 @@ export default function Home() {
         id="hero"
         className="relative min-h-screen flex items-center justify-center pt-16 overflow-hidden"
       >
+        {/* Updated for responsive profile image */}
         {/* Abstract Background Shapes */}
         <div className="absolute top-[-5%] right-[-3%] w-[280px] h-[280px] bg-primary/20 rounded-full blur-[80px] pointer-events-none sm:w-[320px] sm:h-[320px] sm:blur-[90px] lg:w-[400px] lg:h-[400px] lg:blur-[100px]"/>
         <div className="absolute bottom-[-5%] left-[-3%] w-[280px] h-[280px] bg-accent/20 rounded-full blur-[80px] pointer-events-none sm:w-[320px] sm:h-[320px] sm:blur-[90px] lg:w-[400px] lg:h-[400px] lg:blur-[100px]" />
@@ -106,7 +107,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 mx-auto">
+            <div className="relative w-20 h-20 md:w-32 md:h-32 lg:w-64 lg:h-64 mx-auto">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary to-accent rounded-full blur-2xl opacity-40 animate-pulse" />
               <img
                 src={heroImg}
